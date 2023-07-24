@@ -1,8 +1,7 @@
-"use strict";
-
-var _functions = require("./functions.js");
+var _require = require('./functions.js'),
+  showPaths = _require.showPaths;
 var mdLinks = function mdLinks() {
   var relativePath = process.argv[2];
-  (0, _functions.showPaths)(relativePath);
+  showPaths(relativePath);
 };
 mdLinks();
