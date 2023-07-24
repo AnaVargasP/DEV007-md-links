@@ -8,5 +8,13 @@
     "createdAt": "2023-06-20T14:05:58.211Z",
     "version": "6.3.0",
     "commit": "e129ade681adff8cbb19f82e63f688fef2f08f32"
-  }
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.9",
+    "@babel/preset-env": "^7.22.9"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0"
+  },
+  "sourceType": "module"
 }
