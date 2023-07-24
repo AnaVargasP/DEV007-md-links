@@ -1,5 +1,4 @@
-const { showPaths } = require('./functions.js');
-
+import { showPaths } from "./functions.js";
 
 const mdLinks = () => {
   const relativePath = process.argv[2];

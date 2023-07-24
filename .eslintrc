@@ -1,8 +1,18 @@
 {
   "env": {
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": 8
+  },
+  "extends": "airbnb",
+  "overrides": [
+    {
+      "files": ["**/*.spec.js", "**/*.spec.jsx"]
+    }
+  ],
+  "prettier": {
+    "singleQuote": true
   }
 }
