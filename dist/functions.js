@@ -32,10 +32,10 @@ var showPaths = function showPaths(relativePath) {
   // Si la ruta no es absoluta (es relativa)
   if (!_path["default"].isAbsolute(relativePath)) {
     var absolutePath = _path["default"].resolve(relativePath);
-    console.log(_colors["default"].brightBlue("Ruta relativa:"), _colors["default"].brightBlue(relativePath));
-    console.log(_colors["default"].brightGreen("Ruta absoluta:"), _colors["default"].brightGreen(absolutePath));
+    console.log(_colors["default"].bgWhite("Relative route:"), _colors["default"].bgWhite(relativePath));
+    console.log(_colors["default"].bgWhite("Absolute route:"), _colors["default"].bgWhite(absolutePath));
   } else {
-    console.log(_colors["default"].brightGreen("La ruta es absoluta:"), _colors["default"].brightGreen(relativePath));
+    console.log(_colors["default"].bgWhite("The route is absolute:"), _colors["default"].bgWhite(relativePath));
   }
 };
 
@@ -130,17 +130,16 @@ var verifyLinks = function verifyLinks(linksArray) {
   // Iterar sobre cada link en el array de links
   linksArray.forEach(function (link) {
     // Verificar si el link coincide con la expresión regular para un link válido
-    if (link.match(/\[.+?\]\(.+?\)/g)) {
+    if (link.match(/\[.+?\]\(.+?\)/)) {
       // Si el link es válido, extraer la URL y el texto del link utilizando expresiones regulares
-      var linkMatches = link.match(/\[.+?\]\(.+?\)/g);
+      var linkMatches = link.match(/\[(.*?)\]\((.*?)\)/);
       var linkObject = {
-        href: linkMatches[0].match(/https*?:([^"')\s]+)/),
+        href: linkMatches[2],
         // Extraer la URL del link
-        text: linkMatches[0].match(/\[(.*?)\]/)[1],
+        text: linkMatches[1],
         // Extraer el texto del link
         file: currentDirectory // Almacenar la ruta absoluta del directorio actual como la ubicación del archivo
       };
-
       // Agregar el objeto del link verificado al array de links verificados
       verifiedLinks.push(linkObject);
     }
@@ -162,11 +161,9 @@ var makeHTTPRequests = function makeHTTPRequests(urlObjects) {
       obj.message = response.statusText;
       return obj;
     })["catch"](function (err) {
-      // Si ocurre un error, actualizar el objeto con un mensaje de error y el estado de la respuesta, si está disponible
-      obj.message = "Fail";
-      if (err.response) {
-        obj.status = err.response.status;
-      }
+      // Si ocurre un error, actualizar el objeto con el mensaje de error y el estado de la respuesta, si está disponible
+      obj.message = err.response ? err.response.statusText : "FAIL";
+      obj.status = err.response ? err.response.status : 500; // Establecer el estado en 500 (Internal Server Error) si no se obtiene un estado de respuesta válido
       return obj;
     });
   });
@@ -185,7 +182,9 @@ var getLinkStatistics = function getLinkStatistics(linkObjectsArray, shouldValid
       // Total de links en el array
       unique: new Set(linkObjectsArray.map(function (link) {
         return link.href;
-      })).size // Total de links únicos (sin duplicados)
+      })).size,
+      // Total de links únicos (sin duplicados)
+      broken: 0
     };
 
     // Si se debe validar los links, calcular estadísticas adicionales
@@ -197,7 +196,7 @@ var getLinkStatistics = function getLinkStatistics(linkObjectsArray, shouldValid
 
       // Total de links rotos (con mensaje "Fail")
       linkStats.broken = linkObjectsArray.filter(function (obj) {
-        return obj.message === "Fail";
+        return obj.message === "FAIL";
       }).length;
     }
 
