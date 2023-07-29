@@ -5,5 +5,3 @@ Y también contiene otro link a [GitHub](https://giub.com).
 
 link a [OpenAI](https://openai.com).
 link a [OpenAI](https://openai.com).
-
-(https://www.ejemplo.com/pagina_inexistente)

@@ -11,7 +11,9 @@ export const routeExists = (relativePath) => {
     return true;
   } else {
     throw new Error(
-      colors.brightRed(`La ruta especificada no existe: ${relativePath}`)
+      colors.italic.brightRed(
+        `The specified path does not exist: ${relativePath}`
+      )
     );
   }
 };
@@ -21,19 +23,22 @@ export const showPaths = (relativePath) => {
   // Si la ruta no es absoluta (es relativa)
   if (!path.isAbsolute(relativePath)) {
     const absolutePath = path.resolve(relativePath);
+    console.log(colors.italic.magenta("Routes:"));
     console.log(
-      colors.bgWhite("Relative route:"),
-      colors.bgWhite(relativePath)
+      colors.italic.blue("Relative:"),
+      colors.italic.white(relativePath)
     );
     console.log(
-      colors.bgWhite("Absolute route:"),
-      colors.bgWhite(absolutePath)
+      colors.italic.blue("Absolute:"),
+      colors.italic.white(absolutePath)
     );
+    console.log("");
   } else {
     console.log(
-      colors.bgWhite("The route is absolute:"),
-      colors.bgWhite(relativePath)
+      colors.italic.blue("The route is absolute:"),
+      colors.italic.white(relativePath)
     );
+    console.log("");
   }
 };
 
@@ -173,7 +178,6 @@ export const getLinkStatistics = (linkObjectsArray, shouldValidate) => {
     const linkStats = {
       total: linkObjectsArray.length, // Total de links en el array
       unique: new Set(linkObjectsArray.map((link) => link.href)).size, // Total de links únicos (sin duplicados)
-      broken: 0,
     };
 
     // Si se debe validar los links, calcular estadísticas adicionales

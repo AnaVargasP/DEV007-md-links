@@ -21,6 +21,10 @@ export const mdLinks = (document, options) => {
       readFilesContent(filesMd)
         .then((data) => {
           const links = extractLinks(data);
+          if (links.length === 0) {
+            reject(new Error("No links found in the files."));
+            return;
+          }
           const objsLinks = verifyLinks(links);
 
           if (options.validate && options.stats) {

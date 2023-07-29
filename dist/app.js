@@ -16,6 +16,10 @@ var mdLinks = function mdLinks(document, options) {
       var filesMd = (0, _functions.filterMdFiles)(archivos);
       (0, _functions.readFilesContent)(filesMd).then(function (data) {
         var links = (0, _functions.extractLinks)(data);
+        if (links.length === 0) {
+          reject(new Error("No links found in the files."));
+          return;
+        }
         var objsLinks = (0, _functions.verifyLinks)(links);
         if (options.validate && options.stats) {
           (0, _functions.makeHTTPRequests)(objsLinks).then(function (validatedLinks) {

@@ -22,7 +22,7 @@ var routeExists = function routeExists(relativePath) {
   if (_fs["default"].existsSync(relativePath)) {
     return true;
   } else {
-    throw new Error(_colors["default"].brightRed("La ruta especificada no existe: ".concat(relativePath)));
+    throw new Error(_colors["default"].italic.brightRed("The specified path does not exist: ".concat(relativePath)));
   }
 };
 
@@ -32,10 +32,13 @@ var showPaths = function showPaths(relativePath) {
   // Si la ruta no es absoluta (es relativa)
   if (!_path["default"].isAbsolute(relativePath)) {
     var absolutePath = _path["default"].resolve(relativePath);
-    console.log(_colors["default"].bgWhite("Relative route:"), _colors["default"].bgWhite(relativePath));
-    console.log(_colors["default"].bgWhite("Absolute route:"), _colors["default"].bgWhite(absolutePath));
+    console.log(_colors["default"].italic.magenta("Routes:"));
+    console.log(_colors["default"].italic.blue("Relative:"), _colors["default"].italic.white(relativePath));
+    console.log(_colors["default"].italic.blue("Absolute:"), _colors["default"].italic.white(absolutePath));
+    console.log("");
   } else {
-    console.log(_colors["default"].bgWhite("The route is absolute:"), _colors["default"].bgWhite(relativePath));
+    console.log(_colors["default"].italic.blue("The route is absolute:"), _colors["default"].italic.white(relativePath));
+    console.log("");
   }
 };
 
@@ -182,9 +185,7 @@ var getLinkStatistics = function getLinkStatistics(linkObjectsArray, shouldValid
       // Total de links en el array
       unique: new Set(linkObjectsArray.map(function (link) {
         return link.href;
-      })).size,
-      // Total de links únicos (sin duplicados)
-      broken: 0
+      })).size // Total de links únicos (sin duplicados)
     };
 
     // Si se debe validar los links, calcular estadísticas adicionales
