@@ -11,7 +11,9 @@ export const routeExists = (relativePath) => {
     return true;
   } else {
     throw new Error(
-      colors.brightRed(`La ruta especificada no existe: ${relativePath}`)
+      colors.italic.brightRed(
+        `The specified path does not exist: ${relativePath}`
+      )
     );
   }
 };
@@ -21,19 +23,22 @@ export const showPaths = (relativePath) => {
   // Si la ruta no es absoluta (es relativa)
   if (!path.isAbsolute(relativePath)) {
     const absolutePath = path.resolve(relativePath);
+    console.log(colors.italic.magenta("Routes:"));
     console.log(
-      colors.brightBlue("Ruta relativa:"),
-      colors.brightBlue(relativePath)
+      colors.italic.blue("Relative:"),
+      colors.italic.white(relativePath)
     );
     console.log(
-      colors.brightGreen("Ruta absoluta:"),
-      colors.brightGreen(absolutePath)
+      colors.italic.blue("Absolute:"),
+      colors.italic.white(absolutePath)
     );
+    console.log("");
   } else {
     console.log(
-      colors.brightGreen("La ruta es absoluta:"),
-      colors.brightGreen(relativePath)
+      colors.italic.blue("The route is absolute:"),
+      colors.italic.white(relativePath)
     );
+    console.log("");
   }
 };
 
@@ -125,15 +130,14 @@ export const verifyLinks = (linksArray) => {
   // Iterar sobre cada link en el array de links
   linksArray.forEach((link) => {
     // Verificar si el link coincide con la expresión regular para un link válido
-    if (link.match(/\[.+?\]\(.+?\)/g)) {
+    if (link.match(/\[.+?\]\(.+?\)/)) {
       // Si el link es válido, extraer la URL y el texto del link utilizando expresiones regulares
-      const linkMatches = link.match(/\[.+?\]\(.+?\)/g);
+      const linkMatches = link.match(/\[(.*?)\]\((.*?)\)/);
       const linkObject = {
-        href: linkMatches[0].match(/https*?:([^"')\s]+)/), // Extraer la URL del link
-        text: linkMatches[0].match(/\[(.*?)\]/)[1], // Extraer el texto del link
+        href: linkMatches[2], // Extraer la URL del link
+        text: linkMatches[1], // Extraer el texto del link
         file: currentDirectory, // Almacenar la ruta absoluta del directorio actual como la ubicación del archivo
       };
-
       // Agregar el objeto del link verificado al array de links verificados
       verifiedLinks.push(linkObject);
     }
@@ -156,11 +160,9 @@ export const makeHTTPRequests = (urlObjects) => {
         return obj;
       })
       .catch((err) => {
-        // Si ocurre un error, actualizar el objeto con un mensaje de error y el estado de la respuesta, si está disponible
-        obj.message = "Fail";
-        if (err.response) {
-          obj.status = err.response.status;
-        }
+        // Si ocurre un error, actualizar el objeto con el mensaje de error y el estado de la respuesta, si está disponible
+        obj.message = err.response ? err.response.statusText : "FAIL";
+        obj.status = err.response ? err.response.status : 500; // Establecer el estado en 500 (Internal Server Error) si no se obtiene un estado de respuesta válido
         return obj;
       });
   });
@@ -187,7 +189,7 @@ export const getLinkStatistics = (linkObjectsArray, shouldValidate) => {
 
       // Total de links rotos (con mensaje "Fail")
       linkStats.broken = linkObjectsArray.filter(
-        (obj) => obj.message === "Fail"
+        (obj) => obj.message === "FAIL"
       ).length;
     }
 
