@@ -34,10 +34,11 @@ mdLinks(document, options)
         colors.italic.blue("Broken: "),
         colors.italic.white(links.broken)
       );
-      console.log("");
+      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
       // si solo usan validate-------------------------------------------
     } else if (options.validate) {
       console.log(colors.italic.magenta("Validated links:"));
+      console.log(colors.gray("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
       links.forEach((link) => {
         console.log(
           colors.italic.blue("File: "),
@@ -59,7 +60,7 @@ mdLinks(document, options)
           colors.italic.blue("Message: "),
           colors.italic.white(link.message)
         );
-        console.log("");
+        console.log(colors.gray("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
       });
       // si solo usan stats-------------------------------------------------------
     } else if (options.stats) {

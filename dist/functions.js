@@ -33,8 +33,8 @@ var showPaths = function showPaths(relativePath) {
   if (!_path["default"].isAbsolute(relativePath)) {
     var absolutePath = _path["default"].resolve(relativePath);
     console.log(_colors["default"].italic.magenta("Routes:"));
-    console.log(_colors["default"].italic.blue("Relative:"), _colors["default"].italic.white(relativePath));
-    console.log(_colors["default"].italic.blue("Absolute:"), _colors["default"].italic.white(absolutePath));
+    console.log(_colors["default"].italic.blue("➜Relative:"), _colors["default"].italic.white(relativePath));
+    console.log(_colors["default"].italic.blue("➜Absolute:"), _colors["default"].italic.white(absolutePath));
     console.log("");
   } else {
     console.log(_colors["default"].italic.blue("The route is absolute:"), _colors["default"].italic.white(relativePath));
@@ -166,7 +166,7 @@ var makeHTTPRequests = function makeHTTPRequests(urlObjects) {
     })["catch"](function (err) {
       // Si ocurre un error, actualizar el objeto con el mensaje de error y el estado de la respuesta, si está disponible
       obj.message = err.response ? err.response.statusText : "FAIL";
-      obj.status = err.response ? err.response.status : 500; // Establecer el estado en 500 (Internal Server Error) si no se obtiene un estado de respuesta válido
+      obj.status = err.response ? err.response.status : 404; // Establecer el estado en 404 (Not Found) si no se obtiene un estado de respuesta válido
       return obj;
     });
   });
