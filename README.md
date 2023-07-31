@@ -37,53 +37,13 @@ Desarrollado en NodeJS y Javascript, este módulo es una biblioteca que se puede
 
 Para utilizar la biblioteca como API, siga estos pasos:
 
-+ Clonar este repositorio
-    + Abra su terminal y use el comando cd para ir a la carpeta donde desea guardar el proyecto.
-    + Ejecute el siguiente comando:
-    + `git clone` https://github.com/AnaVargasP/DEV007-md-links
-  
++ Clonar este repositorio en tu local 
++ Abra su terminal y use el comando cd para ir a la carpeta     donde desea guardar el proyecto.
++ Ejecute el siguiente comando:
+    + `git clone` https://github.com/AnaVargasP/DEV007-md-links.git  
  + Abra la carpeta en su software de edición de código.
- + Abra la terminal y a partir de este punto, puedes comenzar a usar la API en tu código JavaScript utilizando la función:
+ + Abra la terminal y a partir de este punto, puedes comenzar a usar la API
    
-#### `mdLinks(path, options)`
-##### Argumentos
-+ `path`: Ruta absoluta o relativa al archivo o directorio.
-+ `options`: Un objeto con únicamente la siguiente propiedad:
-    + `validate`:Booleano que determina si se desea validar los links encontrados.
-##### Valor de retorno 
-La función debe retornar una promesa (Promise) que resuelva a un arreglo (Array) de objetos (Object), donde cada objeto representa un link y contiene las siguientes propiedades
-
-##### con `validate:false`: 
-
-* `file`: Ruta del archivo donde se encontró el link.
-* `href`: URL encontrada.
-* `text`: Texto que aparecía dentro del link (`<a>`).
-
-##### con `validate:true`: 
-
-* `file`: Ruta del archivo donde se encontró el link.
-* `href`: URL encontrada.
-* `text`: Texto que aparecía dentro del link (`<a>`).
-* `status`: Código de respuesta HTTP.
-* `message`: Mensaje `fail` en caso de fallo u `ok` en caso de éxito.
-
-##### Ejemplos:
-```js
-const mdLinks = require('md-links');
-
-mdLinks("./some/example.md")
-  .then(links => {
-    // => [{ href, text, file }, ...]
-  })
-  .catch(console.error);
-
-mdLinks("./some/example.md", { validate: true })
-  .then(links => {
-    // => [{ href, text, file, status, ok }, ...]
-  })
-  .catch(console.error);
-
-```
 
 ### 2) CLI (Command Line Interface - Interfaz de Línea de Comando)
 #### Instalación
@@ -123,7 +83,7 @@ Found links:
 
 #### Si la ruta no es válida o no se encuentra ningún archivo .md, aparecerá un error.
 
- `An unexpected error occurred The specified path does not exist: path`).
+ `An unexpected error occurred The specified path does not exist: path`.
 
 #### Options
 
