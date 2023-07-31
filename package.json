@@ -10,11 +10,13 @@
     "commit": "e129ade681adff8cbb19f82e63f688fef2f08f32"
   },
   "scripts": {
-    "build": "npx babel src --out-dir dist"
+    "build": "npx babel src --out-dir dist",
+    "test": "jest --coverage --verbose"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.9",
-    "@babel/preset-env": "^7.22.9"
+    "@babel/preset-env": "^7.22.9",
+    "jest": "^29.6.2"
   },
   "dependencies": {
     "axios": "^1.4.0",

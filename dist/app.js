@@ -14,6 +14,10 @@ var mdLinks = function mdLinks(document, options) {
       (0, _functions.showPaths)(document);
       var archivos = (0, _functions.mdOrDirectory)(document);
       var filesMd = (0, _functions.filterMdFiles)(archivos);
+      if (filesMd.length === 0) {
+        reject(new Error("No Markdown files found in the directory."));
+        return;
+      }
       (0, _functions.readFilesContent)(filesMd).then(function (data) {
         var links = (0, _functions.extractLinks)(data);
         if (links.length === 0) {

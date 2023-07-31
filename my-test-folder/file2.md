@@ -1,1 +1,1 @@
-[Texto del enlace](https://www.ejemplo.com)
+[Ejemplo](https://www.ejemplo.com)
