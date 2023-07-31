@@ -25,20 +25,20 @@ export const showPaths = (relativePath) => {
     const absolutePath = path.resolve(relativePath);
     console.log(colors.italic.magenta("Routes:"));
     console.log(
-      colors.italic.blue("➜Relative:"),
+      colors.italic.blue("➜ Relative:"),
       colors.italic.white(relativePath)
     );
     console.log(
-      colors.italic.blue("➜Absolute:"),
+      colors.italic.blue("➜ Absolute:"),
       colors.italic.white(absolutePath)
     );
-    console.log("");
+    console.log(colors.gray("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
   } else {
     console.log(
-      colors.italic.blue("The route is absolute:"),
+      colors.italic.magenta("The route is absolute:"),
       colors.italic.white(relativePath)
     );
-    console.log("");
+    console.log(colors.gray("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
   }
 };
 
@@ -161,7 +161,7 @@ export const makeHTTPRequests = (urlObjects) => {
       })
       .catch((err) => {
         // Si ocurre un error, actualizar el objeto con el mensaje de error y el estado de la respuesta, si está disponible
-        obj.message = err.response ? err.response.statusText : "FAIL";
+        obj.message = err.response ? err.response.statusText :"FAIL ✘";
         obj.status = err.response ? err.response.status : 404; // Establecer el estado en 404 (Not Found) si no se obtiene un estado de respuesta válido
         return obj;
       });
@@ -189,7 +189,7 @@ export const getLinkStatistics = (linkObjectsArray, shouldValidate) => {
 
       // Total de links rotos (con mensaje "Fail")
       linkStats.broken = linkObjectsArray.filter(
-        (obj) => obj.message === "FAIL"
+        (obj) => obj.message === "FAIL ✘"
       ).length;
     }
 

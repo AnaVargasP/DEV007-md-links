@@ -177,8 +177,8 @@ describe("makeHTTPRequests", () => {
       },
       {
         href: "https://www.wikipedia.orgg",
-        status: 500,
-        message: "FAIL",
+        status: 404,
+        message: "FAIL ✘",
       },
     ]);
   });
@@ -204,7 +204,7 @@ describe("getLinkStatistics", () => {
     const linkObjectsArray = [
       { href: "https://www.google.com", message: "OK" },
       { href: "https://www.wikipedia.org", message: "OK" },
-      { href: "https://www.example.com", message: "FAIL" },
+      { href: "https://www.example.com", message: "FAIL ✘" },
     ];
     const result = await getLinkStatistics(linkObjectsArray, true);
 

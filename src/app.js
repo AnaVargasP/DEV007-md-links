@@ -18,9 +18,14 @@ export const mdLinks = (document, options) => {
       showPaths(document);
       const archivos = mdOrDirectory(document);
       const filesMd = filterMdFiles(archivos);
+      if (filesMd.length === 0) {
+        reject(new Error("No Markdown files found in the directory."));
+        return;
+      }
       readFilesContent(filesMd)
         .then((data) => {
           const links = extractLinks(data);
+
           if (links.length === 0) {
             reject(new Error("No links found in the files."));
             return;
