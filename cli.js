@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { mdLinks } = require("./dist/app");
 const colors = require("colors");
 
