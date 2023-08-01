@@ -22,7 +22,15 @@ algunas estadísticas.
 
 ## 2. Resumen del proyecto
 
-Desarrollado en NodeJS y Javascript, este módulo es una biblioteca que se puede usar para recuperar todos los enlaces dentro de una ruta específica; permitiendo consultar el estado de todos los enlaces encontrados y enviar un resumen con las estadísticas encontradas en el análisis.
+Es una herramienta de línea de comandos (CLI) que te permite analizar archivos Markdown y recuperar todos los enlaces presentes en una ruta específica. Ya sea que estés trabajando en un proyecto web, una documentación técnica o simplemente organizando tus archivos Markdown, esta herramienta te ayuda a identificar y verificar rápidamente los enlaces existentes.
+
+Características clave:
+
+- Recupera y muestra una lista detallada de todos los enlaces encontrados en los archivos Markdown.
+- Verifica el estado de cada enlace para identificar enlaces rotos o no válidos.
+- Soporta carpetas y archivos individuales, lo que te permite analizar todo un proyecto o archivos seleccionados.
+- Fácil de usar: simplemente proporciona la ruta de la carpeta o archivo para comenzar el análisis.
+- Interfaz de línea de comandos (CLI) para una rápida integración con tus flujos de trabajo existentes.
 
 ## 3. Diagrama de flujo
 
