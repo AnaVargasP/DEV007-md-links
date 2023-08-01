@@ -1,7 +1,7 @@
 {
   "name": "md-links-analauvapi",
   "version": "0.2.0",
-  "description": "Md-links es una aplicación CLI que se puede usar para recuperar todos los enlaces dentro de los archivos Markdown que están presentes en una ruta específica",
+  "description": "Aplicación CLI para recuperar enlaces de archivos Markdown en una ruta específica.",
    "main": "cli.js",
    "bin": "cli.js",
    "keywords": ["md-links", "Markdown", "links", "CLI", "enlaces"],
